@@ -6,6 +6,7 @@
     <br>
     <h3>Estudiante {{ $estudiante->nombres }}</h3>
     <br>
+    <img src="{{ Storage::url($estudiante->foto)}}" alt="" style="height:100px; margin:20px">
     <p>Nombre: {{ $estudiante->nombres }} {{ $estudiante->apellidos }}</p>
     <p>Fecha de Nacimiento: {{ $estudiante->fecha_nacimiento }}</p>
     <p>Documento: {{ $estudiante->documento }}</p>

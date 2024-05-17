@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
-use Illuminate\Http\Request;;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
+;
 
 class CursoController extends Controller
 {
@@ -25,6 +28,10 @@ class CursoController extends Controller
         $curso->descripcion = $request->input('descripcionCurso');
         $curso->fecha_inicio = $request->input('fechaInicio');
         $curso->docente = $request->input('docenteCurso');
+
+        if ($request->hasFile('imagenCurso')) {
+            $curso->imagen = $request->file('imagenCurso')->store('public/cursos');
+        }
 
         $curso->save();
 
@@ -50,6 +57,14 @@ class CursoController extends Controller
             'fecha_inicio' => $request->fechaInicio,
             'docente' => $request->docenteCurso
         ]);
+
+        if ($request->hasfile('imagenCurso')) {
+            Storage::disk('')->delete($curso->imagen);
+            $curso->imagen = $request->file('imagenCurso')->store('public/cursos');
+            $curso->save();
+        }
+
+
 
         return to_route('cursos.show', $curso);
     }

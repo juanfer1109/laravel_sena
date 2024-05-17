@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('descripcion', length: 200);
             $table->date('fecha_inicio');
             $table->string('docente');
+            $table->string('imagen');
         });
     }
 

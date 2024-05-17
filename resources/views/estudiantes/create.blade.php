@@ -6,7 +6,7 @@
     <br>
     <h3>Crear un nuevo estudiante</h3>
     <br>
-    <form action="/estudiantes" method="POST">
+    <form action="/estudiantes" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="mb-3">
             <label for="idEstudiante" class="form-label">Documento del estudiante</label>
@@ -23,6 +23,10 @@
         <div class="mb-3">
             <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento</label>
             <input type="date" class="form-control" id="fechaNacimiento" name="fechaNacimiento">
+        </div>
+        <div class="mb-3">
+            <label for="fotoEstudiante" class="form-label">Foto del Estudiante</label>
+            <input type="file" class="form-control" id="fotoEstudiante" name="fotoEstudiante">
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

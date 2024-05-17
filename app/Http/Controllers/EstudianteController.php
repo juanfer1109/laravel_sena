@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Estudiante;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class EstudianteController extends Controller
 {
@@ -25,6 +26,10 @@ class EstudianteController extends Controller
         $est->apellidos = $request->input('apellidosEstudiante');
         $est->fecha_nacimiento = $request->input('fechaNacimiento');
         $est->documento = $request->input('idEstudiante');
+
+        if ($request->hasFile('fotoEstudiante')) {
+            $est->foto = $request->file('fotoEstudiante')->store('public/estudiantes');
+        }
 
         $est->save();
 
@@ -49,6 +54,12 @@ class EstudianteController extends Controller
             'fecha_nacimiento' => $request->fechaNacimiento,
             'documento' => $request->idEstudiante
         ]);
+
+        if ($request->hasfile('fotoEstudiante')) {
+            Storage::disk('')->delete($estudiante->foto);
+            $estudiante->foto = $request->file('fotoEstudiante')->store('public/estudiantes');
+            $estudiante->save();
+        }
 
         return to_route('estudiantes.show', $estudiante);
     }

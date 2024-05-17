@@ -1,11 +1,12 @@
 @extends('layouts.app')
 
-@section('titulo', 'Curso')
+@section('titulo', 'Detalle Curso')
 
 @section('contenido')
     <br>
     <h3>{{ $curso->nombre }}</h3>
     <br>
+    <img src="{{ Storage::url($curso->imagen)}}" alt="" style="height:100px; margin:20px">
     <p>Descripción: {{ $curso->descripcion }}</p>
     <p>Fecha de Inicio: {{ $curso->fecha_inicio }}</p>
     <p>Docente: {{ $curso->docente }}</p>

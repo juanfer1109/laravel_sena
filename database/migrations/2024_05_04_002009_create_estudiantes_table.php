@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('apellidos', length: 100);
             $table->integer('documento');
             $table->date('fecha_nacimiento');
+            $table->string('foto');
         });
     }
 
