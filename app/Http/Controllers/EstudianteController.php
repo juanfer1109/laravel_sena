@@ -66,6 +66,7 @@ class EstudianteController extends Controller
 
     public function destroy(Estudiante $estudiante)
     {
+        Storage::disk('')->delete($estudiante->foto);
         $estudiante->delete();
 
         return to_route('estudiantes.index');

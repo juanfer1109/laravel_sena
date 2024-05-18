@@ -71,6 +71,7 @@ class CursoController extends Controller
 
      public function destroy(Curso $curso)
     {
+        Storage::disk('')->delete($curso->imagen);
         $curso->delete();
 
         return to_route('cursos.index');
